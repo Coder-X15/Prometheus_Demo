@@ -11,4 +11,4 @@ spec:
     - name: backend
       protocol: TCP
       port: 5000
-      targetPort: 5000
+      targetPort: 8000
