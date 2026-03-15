@@ -19,7 +19,11 @@ def get_location():
     location = geo.ip(ip_address)
 
     # render index.html with the data
-    return render_template('index.html', latitude=location.latlng[0], longitude=location.latlng[1], city=location.city, country=location.country)
+    return render_template('index.html', 
+            latitude=location.latlng[0], 
+            longitude=location.latlng[1], 
+            city=location.city, 
+            country=location.country)
 
 
 if __name__ == '__main__':
