@@ -1,0 +1,19 @@
+name: 23BCD2 CI/CD Pipeline
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    create_release_notes:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Create a new release
+              uses: softprops/action-gh-release@v1
+              with:
+                files: |
+                  Dockerfile
+                  requirements.txt
+                  services.yaml
+                  deployments.yaml

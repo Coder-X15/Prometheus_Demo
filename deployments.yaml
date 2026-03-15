@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: location_finder_bcd2_deployment
+  labels:
+    app: location_finder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: location_finder
+  template:
+    metadata:
+      labels:
+        app: location_finder
+    spec:
+      containers:
+      - name: location_finder_container
+        image: location_finder_image:latest
+        imagePullPolicy: IfNotPresent 
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        env:
+        - name: FLASK_ENV
+          value: "production"
+        - name: FLASK_APP
+          value: "app.py"
+        - name: FLASK_RUN_HOST
+          value: "0.0.0.0"
+        - name: FLASK_RUN_PORT
+          value: "5000"

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: location_finder_bcd2_service
+  labels:
+    app: location_finder
+spec:
+  selector:
+    app: location_finder
+  ports:
+    - name: backend
+      protocol: TCP
+      port: 5000
+      targetPort: 5000

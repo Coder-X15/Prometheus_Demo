@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Show Me Where I am</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <main class="container">
+            <h1>Hey, I know where you are!</h1>
+
+            <section class="info" aria-label="Location data">
+                <div>
+                    <div class="label">Coordinates</div>
+                    <div class="value">{{ latitude }}, {{ longitude }}</div>
+                </div>
+
+                <div>
+                    <div class="label">Location</div>
+                    <div class="value">{{ city }}, {{ country }}</div>
+                </div>
+            </section>
+
+            <div class="footer">
+                This page uses your IP address to determine an approximate location.
+            </div>
+        </main>
+    </body>
+</html>
