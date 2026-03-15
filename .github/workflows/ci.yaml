@@ -7,11 +7,18 @@ on:
 
 jobs:
     create_release_notes:
+        permissions:
+            contents: write
         runs-on: ubuntu-latest
         steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
             - name: Create a new release
               uses: softprops/action-gh-release@v1
               with:
+                tag_name: v${{ github.run_number }}
+                generate_release_notes: true
                 files: |
                   Dockerfile
                   requirements.txt
