@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: location_finder_bcd2_deployment
+  name: location-finder-bcd2-deployment
   labels:
-    app: location_finder
+    app: location-finder
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: location_finder
+      app: location-finder
   template:
     metadata:
       labels:
-        app: location_finder
+        app: location-finder
     spec:
       containers:
-      - name: location_finder_container
+      - name: location-finder-container
         image: location_finder_image:latest
         imagePullPolicy: IfNotPresent 
         ports:
@@ -36,3 +36,21 @@ spec:
           value: "0.0.0.0"
         - name: FLASK_RUN_PORT
           value: "5000"
+      - name: prometheus
+        image: prom/prometheus:latest
+        ports:
+        - containerPort: 9090
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        volumeMounts:
+        - name: prometheus-config-volume
+          mountPath: /etc/prometheus/
+      volumes:
+      - name: prometheus-config-volume
+        configMap:
+          name: prometheus-config
